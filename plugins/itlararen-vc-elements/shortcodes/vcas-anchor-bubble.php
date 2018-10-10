@@ -66,10 +66,10 @@ function vcas_anchor_bubble_function( $atts, $content ) {
 add_shortcode( 'vcas_anchor_bubble', 'vcas_anchor_bubble_function' );
 
 function vc_enqueue_style(){
-    wp_register_style( 'itlararen-vc-styles',  plugin_dir_url( __FILE__ ) . 'assets/style.css' );
-    wp_enqueue_style( 'itlararen-vc-styles' );
+    //wp_register_style( 'itlararen-vc-styles');
+    wp_enqueue_style( 'itlararen-vc-style',  plugin_dir_url( __FILE__ ) . 'css/style.css'  );
 }
-add_action( 'admin_enqueue_scripts', 'vc_enqueue_style' );
+add_action( 'wp_enqueue_scripts', 'vc_enqueue_style' );
 
 
 ?>
