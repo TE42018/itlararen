@@ -1,6 +1,4 @@
 <?php
-
-
 function vcas_component_gauge() {
 	vc_map(
 		array(
