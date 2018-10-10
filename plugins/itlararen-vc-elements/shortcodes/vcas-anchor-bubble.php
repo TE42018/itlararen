@@ -11,10 +11,19 @@ vc_map(
                 'type' => 'attach_image',
                 'holder' => 'div',
                 'class' => 'anchor-bubble',
-                'heading' => __( 'Image:' ),
+                'heading' => __( 'Image' ),
                 'param_name' => 'bubbleimg',
                 'value' => __( '' ),
-                'description' => __( '' ),
+                'description' => __( 'Image for the anchor bubble' ),
+                ),
+            array(
+                'type' => 'textfield',
+                'holder' => 'div',
+                'class' => '',
+                'heading' => __( 'Link' ),
+                'param_name' => 'bubblelink',
+                'value' => __( 'http://www.example.site/' ),
+                'description' => __( 'Link to site' ),
                 )
             )
         )
@@ -32,17 +41,20 @@ function vcas_anchor_bubble_function( $atts, $content ) {
 	$atts = shortcode_atts(
 		array(
             'bubbleimg' => '',
+            'bubblelink' => '',
 		), $atts, 'vcas_anchor_bubble'
 	);
 
 	if(!empty($atts['bubbleimg'])) {
         $image_id = $atts['bubbleimg'];
         $image_url = wp_get_attachment_url($image_id, 'small');
+        $link = $atts['bubblelink'];
         
 		ob_start();
 		?>
-       
+        <a href="">
         <img src="<?php echo $image_url ?>" alt="Bubble image" /> 
+        </a>
         
 		<?php
 		$html .= ob_get_clean();
