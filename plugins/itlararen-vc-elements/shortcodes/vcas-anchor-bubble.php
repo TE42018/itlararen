@@ -1,6 +1,6 @@
 <?php
 
-function vcas_component_article_link() {
+function vcas_component_anchor_bubble() {
 vc_map(
     array(
         'name' => __( 'Anchor bubble' ),
@@ -8,9 +8,9 @@ vc_map(
         'category'      => __( 'itlararen.se' ),
         'params' => array(
             array(
-                'type' => 'vc_anchor_bubble',
+                'type' => 'attach_image',
                 'holder' => 'div',
-                'class' => '',
+                'class' => 'anchor-bubble',
                 'heading' => __( 'Image:' ),
                 'param_name' => 'bubbleimg',
                 'value' => __( '' ),
@@ -22,38 +22,36 @@ vc_map(
 }
 
 
-add_action( 'vc_before_init', 'vcas_component_article_link' );
+add_action( 'vc_before_init', 'vcas_component_anchor_bubble' );
 
-function vcas_article_link_function( $atts, $content ) {
+function vcas_anchor_bubble_function( $atts, $content ) {
 	global $wpdb;
     $date = date("Y-m-d");
     $org = $atts;
 	
 	$atts = shortcode_atts(
 		array(
-            'articleid' => '',
-		), $atts, 'vcas_article_link'
+            'bubbleimg' => '',
+		), $atts, 'vcas_anchor_bubble'
 	);
 
-	if(!empty($org['articleid'])) {
-		$href = vc_build_link( $org['articleid'] );
-		$id = url_to_postid($href['url']);
-		
-		
+	if(!empty($atts['bubbleimg'])) {
+        $image_id = $atts['bubbleimg'];
+        $image_url = wp_get_attachment_url($image_id, 'small');
+        
 		ob_start();
 		?>
-		<div class="article_link_single">
-		<a href="<?php echo get_permalink($row->ID); ?>" title="<?php echo $row->post_title; ?>" class="vc_gitem-link vc-zone-link">	
-		</a>	
-		</div>
+       
+        <img src="<?php echo $image_url ?>" alt="Bubble image" /> 
+        
 		<?php
 		$html .= ob_get_clean();
 	}
 	else {
-		$html = "Link missing!";
+		$html = "Image missing!";
 	}
 	return $html;
 }
-add_shortcode( 'vcas_article_link', 'vcas_article_link_function' );
+add_shortcode( 'vcas_anchor_bubble', 'vcas_anchor_bubble_function' );
 
 ?>
