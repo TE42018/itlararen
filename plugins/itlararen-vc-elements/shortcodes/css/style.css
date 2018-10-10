@@ -1,0 +1,21 @@
+.anchor-bubble{
+	
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	
+	width: 90px;
+	height: 90px;
+	border-radius: 100px;
+	
+	box-shadow: 0 0 4px #000;
+	transition: background-color 0.4s, box-shadow 0.4s;
+	
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.anchor-bubble:hover{
+	background-color: #F7C0BD;
+	box-shadow: 0 0 10px #000;
+}
