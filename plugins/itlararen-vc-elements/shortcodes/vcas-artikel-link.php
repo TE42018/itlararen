@@ -1,59 +1,87 @@
 <?php
 
-function vcas_component_artikel_link() {
-vc_map(
+function vcas_component_artikel_link()
+{
+	vc_map(
 		array(
-			'name' => __( 'Artikel Link' ),
+			'name' => __('Artikel Link'),
 			'base' => 'vcas_artikel_link',
-			'category'      => __( 'itlararen.se' ),
+			'category' => __('itlararen.se'),
 			'params' => array(
-                array(
+				array(
+					'type' => 'attach_image',
+					'holder' => 'div',
+					'class' => 'linkimage',
+					'heading' => __('image'),
+					'param_name' => 'link_type_image',
+					'value' => '',
+					'description' => __(''),
+				),
+				array(
 					'type' => 'vc_link',
 					'holder' => 'div',
 					'class' => '',
-					'heading' => __( 'Länk:' ),
-					'param_name' => 'artikelid',
-					'value' => __( '' ),
-					'description' => __( 'bbbn b vb bbnnn' ),
+					'heading' => __('Länk:'),
+					'param_name' => 'url',
+					'value' => __(''),
+					'description' => __(''),
+				),
+				array(
+					'type' => 'dropdown',
+					'heading' => __( 'Field Label',  "my-text-domain" ),
+					'param_name' => 'field_name',
+					'value' => array(
+					  __( 'Lätt',  "my-text-domain"  ) => 'option1value',
+					  __( 'Svår',  "my-text-domain"  ) => 'option2value',
 					)
 				)
 			)
-		);
+		)	
+	);
 }
 
+add_action('vc_before_init', 'vcas_component_artikel_link');
 
-add_action( 'vc_before_init', 'vcas_component_artikel_link' );
-
-function vcas_artikel_link_function( $atts, $content ) {
+function vcas_artikel_link_function($atts, $content)
+{
 	global $wpdb;
-    $date = date("Y-m-d");
-    $org = $atts;
-	
+	$date = date("Y-m-d");
+	$org = $atts;
+
 	$atts = shortcode_atts(
 		array(
-            'artikelid' => '',
-		), $atts, 'vcas_artikel_link'
+			'url' => '',
+			'link_type_image' => '',
+			'difficultyImage' => ''
+		),
+		$atts,
+		'vcas_artikel_link'
 	);
 
-	if(!empty($org['artikelid'])) {
-		$href = vc_build_link( $org['artikelid'] );
-		$id = url_to_postid($href['url']);
-		
-		
+	if (!empty($atts['link_type_image'])) {
+		$href = $atts['url'];
+		//$id = url_to_postid($href['url']);
+
+		$image_id = $atts['link_type_image'];
+		$image_url = wp_get_attachment_url($image_id, 'thumbnail');
+
+		$html .= $href;
 		ob_start();
 		?>
-		<div class="artikel_link_single">
-		<a href="<?php echo get_permalink($row->ID); ?>" title="<?php echo $row->post_title; ?>" class="vc_gitem-link vc-zone-link">	
-		</a>	
-		</div>
+		
+
+		<img src="<?php echo $image_url ?>" alt="Article image"/>
+		
+	
+
 		<?php
-		$html .= ob_get_clean();
-	}
-	else {
-		$html = "Link missing!";
-	}
-	return $html;
+	$html .= ob_get_clean();
+} else {
+	$html = "Link missing!";
 }
-add_shortcode( 'vcas_artikel_link', 'vcas_artikel_link_function' );
+return $html;
+
+}
+add_shortcode('vcas_artikel_link', 'vcas_artikel_link_function');
 
 ?>
