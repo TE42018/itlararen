@@ -72,9 +72,14 @@ function vcas_artikel_link_function($atts, $content)
 		
 		ob_start();
 		?>
+		<div class="article_link_container">
 
-		<a href="<?php echo $href ?>"  rel="noopener noreferrer">Sample Link Text</a>
-		
+		<div class="article_link">
+
+			<a href="<?php echo $href ?>"  rel="noopener noreferrer">Sample Link Text</a>
+		</div>
+
+		<div class="article_type_img">
 		<?php
 			if($image_type == 'kursplanering')
 			{
@@ -100,7 +105,10 @@ function vcas_artikel_link_function($atts, $content)
 			{
 				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/cross.png' alt='korsord'>");
 			}
-			
+			?>
+		</div>
+		<div class="article_difficulty">
+			<?php
 
 			if($difficulty == 'enkel')
 			{
@@ -110,11 +118,10 @@ function vcas_artikel_link_function($atts, $content)
 			{
 				echo('<img src="http://localhost:8080/wordpress/wp-content/uploads/2018/10/hard.png" alt="Difficulty hard">');
 			}
-			
-
-
 		?>
+		</div>
 
+		</div>
 		<?php
 	$html .= ob_get_clean();
 
