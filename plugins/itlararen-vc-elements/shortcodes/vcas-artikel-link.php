@@ -9,19 +9,25 @@ function vcas_component_artikel_link()
 			'category' => __('itlararen.se'),
 			'params' => array(
 				array(
-					'type' => 'attach_image',
-					'holder' => 'div',
-					'class' => 'linkimage',
-					'heading' => __('image'),
+					'type' => 'dropdown',
+					'holder' => __('Field Label',  "my-text-domain"),
+					'class' => 'type',
 					'param_name' => 'link_type_image',
-					'value' => '',
+					'value' => array(
+						__('video', "my-text-domain ") => 'video',
+						__('pdf', "my-text-domain ") => 'pdf',
+						__('zip', "my-text-domain ") => 'zip',
+						__('korsord', "my-text-domain ") => 'korsord',
+						__('quiz', "my-text-domain ") => 'quiz',
+						__('kurser', "my-text-domain ") => 'kursplaneringar',
+					),
 					'description' => __(''),
 				),
 				array(
 					'type' => 'vc_link',
 					'holder' => 'div',
 					'class' => '',
-					'heading' => __('Länk:'),
+					'heading' => __('Link'),
 					'param_name' => 'url',
 					'value' => __(''),
 					'description' => __(''),
@@ -29,10 +35,10 @@ function vcas_component_artikel_link()
 				array(
 					'type' => 'dropdown',
 					'heading' => __( 'Field Label',  "my-text-domain" ),
-					'param_name' => 'field_name',
+					'param_name' => 'difficulty',
 					'value' => array(
-					  __( 'Lätt',  "my-text-domain"  ) => 'option1value',
-					  __( 'Svår',  "my-text-domain"  ) => 'option2value',
+					  __( 'Lätt',  "my-text-domain"  ) => 'enkel',
+					  __( 'Svår',  "my-text-domain"  ) => 'avancerad',
 					)
 				)
 			)
@@ -50,35 +56,42 @@ function vcas_artikel_link_function($atts, $content)
 
 	$atts = shortcode_atts(
 		array(
-			'url' => '',
 			'link_type_image' => '',
-			'difficultyImage' => ''
+			'url' => '',
+			'difficulty' => ''
 		),
 		$atts,
 		'vcas_artikel_link'
 	);
 
-	if (!empty($atts['link_type_image'])) {
-		$href = $atts['url'];
-		//$id = url_to_postid($href['url']);
-
-		$image_id = $atts['link_type_image'];
+	
+		$href = vc_build_link($org['url'])['url'];
+		$image_type = $org['link_type_image'];
 		$image_url = wp_get_attachment_url($image_id, 'thumbnail');
-
+		$difficulty = $org['difficulty']; 
 		$html .= $href;
+		
 		ob_start();
 		?>
-		
 
 		<img src="<?php echo $image_url ?>" alt="Article image"/>
+		<a href="<?php echo $href ?>"  rel="noopener noreferrer">Sample Link Text</a>
 		
-	
+		<?php
+			if($difficulty = ['enkel'])
+			{
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/easy.png' alt='Difficulty easy'>");
+			}
+			elseif($difficulty = ['avancerad'])
+			{
+				echo('<img src="http://localhost:8080/wordpress/wp-content/uploads/2018/10/hard.png" alt="Difficulty hard">');
+			}
+			
+		?>
 
 		<?php
 	$html .= ob_get_clean();
-} else {
-	$html = "Link missing!";
-}
+
 return $html;
 
 }
