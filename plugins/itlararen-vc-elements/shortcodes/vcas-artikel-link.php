@@ -10,16 +10,16 @@ function vcas_component_artikel_link()
 			'params' => array(
 				array(
 					'type' => 'dropdown',
-					'holder' => __('Field Label',  "my-text-domain"),
+					'holder' => __('Field Label',  "text-domain"),
 					'class' => 'type',
 					'param_name' => 'link_type_image',
 					'value' => array(
-						__('video', "my-text-domain ") => 'video',
-						__('pdf', "my-text-domain ") => 'pdf',
-						__('zip', "my-text-domain ") => 'zip',
-						__('korsord', "my-text-domain ") => 'korsord',
-						__('quiz', "my-text-domain ") => 'quiz',
-						__('kurser', "my-text-domain ") => 'kursplaneringar',
+						__('video', "text-domain ") => 'video',
+						__('pdf', "text-domain ") => 'pdf',
+						__('zip', "text-domain ") => 'zip',
+						__('korsord', "text-domain ") => 'korsord',
+						__('quiz', "text-domain ") => 'quiz',
+						__('kurser', "text-domain ") => 'kursplanering',
 					),
 					'description' => __(''),
 				),
@@ -67,26 +67,52 @@ function vcas_artikel_link_function($atts, $content)
 	
 		$href = vc_build_link($org['url'])['url'];
 		$image_type = $org['link_type_image'];
-		$image_url = wp_get_attachment_url($image_id, 'thumbnail');
 		$difficulty = $org['difficulty']; 
 		$html .= $href;
 		
 		ob_start();
 		?>
 
-		<img src="<?php echo $image_url ?>" alt="Article image"/>
 		<a href="<?php echo $href ?>"  rel="noopener noreferrer">Sample Link Text</a>
 		
 		<?php
-			if($difficulty = ['enkel'])
+			if($image_type == 'kursplanering')
+			{
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/look.png' alt='kursplanering'>");
+			}
+			else if ($image_type == 'video')
+			{
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/play.png' alt='video'>");
+			}
+			else if ($image_type == 'pdf')
+			{
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/pdf.png' alt='pdf'>");
+			}
+			else if ($image_type == 'zip')
+			{
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/zip.png'>");
+			}
+			else if ($image_type == 'quiz')
+			{
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/quiz2.png' alt='quiz'>");
+			}
+			else if ($image_type == 'korsord')
+			{
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/cross.png' alt='korsord'>");
+			}
+			
+
+			if($difficulty == 'enkel')
 			{
 				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/easy.png' alt='Difficulty easy'>");
 			}
-			elseif($difficulty = ['avancerad'])
+			else if ($difficulty == 'avancerad')
 			{
 				echo('<img src="http://localhost:8080/wordpress/wp-content/uploads/2018/10/hard.png" alt="Difficulty hard">');
 			}
 			
+
+
 		?>
 
 		<?php
