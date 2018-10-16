@@ -16,15 +16,6 @@ vc_map(
 					'value' => __( '' ),
 					'description' => __('Link to MP4 file'),
 				),
-				array(
-					'type' => 'attach_image',
-					'holder' => 'div',
-					'class' => '',
-					'heading' => __( 'Poster:' ),
-					'param_name' => 'video_poster',
-					'value' => __( '' ),
-					'description' => __('Poster image for video'),
-				),
 			)
 		)
 	);
@@ -44,18 +35,21 @@ function vcas_video_function( $atts, $content ) {
 	);
 
 	if(!empty($atts['video_url'])) {
-	ob_start();
+		$poster = substr($atts['video_url'],0, -3)."jpg";
+		$webm  = substr($atts['video_url'],0, -3)."webm";
+		ob_start();
 	?>		
-		<video id="myVideo" controls  poster="<?php echo $atts['video_url'] ?>">
-				   <source src="<?php echo $atts['video_url'] ?>" type="video/mp4">	   	 
+		<video id="myVideo" controls  poster="<?php echo $poster ?>">
+				   <source src="<?php echo $atts['video_url'] ?>" type="video/mp4">	   	
+				   <source src="<?php echo $webm ?>" type="video/webm">	    
 				   <p> Din webbläsare stöder inte HTML5-video. Prova att uppgradera webbläsare. Alla populära webbläsare
 						såsom, IE, Firefox, Chrome, Opera och Safari har stöd för HTML5-video. 
 				   </p>
 				</video>
-				<p> <input type="button" onclick="setPlaySpeed()" type="button" id="knapp2" value="x1.0"></input> Klicka på knappen för att ändra uppspelningshastigheten</p>
+				<p> <input type="button" onclick="setPlaySpeed()" type="button" id="knapp2" value="x1.0" /> Klicka på knappen för att ändra uppspelningshastigheten</p>
 
-				<h3>Längd: 12 min</h3>
-				<h3>Nivå: <img src="../../images/easy.png" alt="Svårighetsgrad enkel" /> (enkel)</h3>
+				<h3>Längd: <span id="myVideoLength">0</span> min</h3>
+				<h3>Nivå: <img src="<?php echo plugin_dir_url( __FILE__ ) ?>img/easy.png" alt="Svårighetsgrad enkel" /> (enkel)</h3>
 				<p>
 					<b>OBS allt egenproducerat material är skyddat av upphovsrättslagen
 					och användandet av dessa filmer är ej tillåtet i kommersiellt syfte (gäller även skolor) utan avtal med IT-läraren Skåne.</b> 
