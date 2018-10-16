@@ -64,57 +64,64 @@ function vcas_artikel_link_function($atts, $content)
 		'vcas_artikel_link'
 	);
 
-	
-		$href = vc_build_link($org['url'])['url'];
+		$url = vc_build_link($org['url']);
+		$href = $url['url'];
 		$image_type = $org['link_type_image'];
-		$difficulty = $org['difficulty']; 
-		$html .= $href;
-		
+		$difficulty = $org['difficulty'];
+		$html;
 		ob_start();
 		?>
+		<div class="article_link_container">
 
-		<a href="<?php echo $href ?>"  rel="noopener noreferrer">Sample Link Text</a>
-		
+			<?php
+					$title = $url['title'];
+			?>
+			<a href="<?php echo $href ?>" class="article_link" rel="noopener noreferrer"><?php echo $title ?></a>
+
+
+		<div class="article_type_img">
 		<?php
 			if($image_type == 'kursplanering')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/look.png' alt='kursplanering'>");
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/look.png' class='article_img' alt='kursplanering'>");
 			}
 			else if ($image_type == 'video')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/play.png' alt='video'>");
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/play.png'class='article_img'  alt='video'>");
 			}
 			else if ($image_type == 'pdf')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/pdf.png' alt='pdf'>");
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/pdf.png' class='article_img' alt='pdf'>");
 			}
 			else if ($image_type == 'zip')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/zip.png'>");
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/zip.png' class='article_img' alt='zip'> ");
 			}
 			else if ($image_type == 'quiz')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/quiz2.png' alt='quiz'>");
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/quiz2.png' class='article_img'  alt='quiz'>");
 			}
 			else if ($image_type == 'korsord')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/cross.png' alt='korsord'>");
+				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/cross.png' class='article_img'  alt='korsord'>");
 			}
-			
+			?>
+		</div>
+		<div class="article_difficulty">
+			<?php
 
 			if($difficulty == 'enkel')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/easy.png' alt='Difficulty easy'>");
+				echo('<img src="http://localhost:8080/wordpress/wp-content/uploads/2018/10/easy.png" class="article_difficulty_img" alt="Difficulty easy">');
 			}
 			else if ($difficulty == 'avancerad')
 			{
-				echo('<img src="http://localhost:8080/wordpress/wp-content/uploads/2018/10/hard.png" alt="Difficulty hard">');
+				echo('<img src="http://localhost:8080/wordpress/wp-content/uploads/2018/10/hard.png" class="article_difficulty_img" alt="Difficulty hard">');
 			}
-			
-
-
 		?>
+		</div>
 
+		</div>
 		<?php
 	$html .= ob_get_clean();
 
@@ -122,5 +129,8 @@ return $html;
 
 }
 add_shortcode('vcas_artikel_link', 'vcas_artikel_link_function');
+
+add_action( 'wp_enqueue_scripts', 'vc_enqueue_style' );
+
 
 ?>
