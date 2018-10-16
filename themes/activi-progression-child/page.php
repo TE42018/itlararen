@@ -35,7 +35,6 @@ get_header(); ?>
 			<div class="clearfix-pro"></div>
 
 			<div class="promo_container vc_row">
-			
 				<div class="promo skryt1 vc_col-sm-4" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/ubuntuboken.jpg);">
 					<div class="content">
 						<h3>Ubuntuboken</h3>
@@ -57,12 +56,9 @@ get_header(); ?>
 						<p><a class="cta" href="http://www.netacad.com">Läs mer här ⯈</a></p>
 					</div>
 				</div>
-				
-				<div class="clear-fix"></div>
-				
-				
-
+				<div class="clearfix-pro"></div>
 			</div>
+
 		</div><!-- close .width-container-pro -->
 	</div><!-- #content-pro -->
 	

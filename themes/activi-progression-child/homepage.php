@@ -34,6 +34,60 @@ get_header(); ?>
 			<?php endwhile; ?>
 			
 			<div class="clearfix-pro"></div>
+
+			<div class="promo_container vc_row">
+				<div class="promo skryt1 vc_col-sm-4" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/linux.png);">
+					<div class="content">
+						<h3>Linux</h3>
+						<p>Från grundläggande linux-kunskaper till mer avancerade tillämpningar. Främst exempel med Ubuntu.</p>
+						<p><a class="cta" href="videos.html#video1">Läs mer här ⯈</a></p>
+					</div>
+				</div>
+				<div class="promo skryt2 vc_col-sm-4" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/network.png);">
+					<div class="content">
+						<h3>Nätverk</h3>
+						<p>Vill du lära dig hur nätverk fungerar? Fokus på nätverksprotokoll, standarder och nätverksutrustning.</p>
+						<p><a class="cta" href="videos.html#video4">Läs mer här ⯈</a></p>
+					</div>
+				</div>
+				<div class="promo skryt3 vc_col-sm-4" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/pc.png);">
+					<div class="content">
+						<h3>Persondatorer</h3>
+						<p>Genomgång av persondatorn och dess delar. Även bärbara datorer och kringutrustning behandlas.</p>
+						<p><a class="cta" href="videos.html#video2">Läs mer här ⯈</a></p>
+					</div>
+				</div>
+				<div class="clearfix-pro"></div>
+			</div>
+
+			<div class="clearfix-pro"></div>
+
+			<div class="promo_container vc_row">
+				<div class="promo skryt1 vc_col-sm-4" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/windows.png);">
+					<div class="content">
+						<h3>Microsoft Windows</h3>
+						<p>Fördjupa dig i Windows klientoperativsystem (7 & 8) samt serveroperativsystem (2008 & 2012).</p>
+						<p><a class="cta" href="videos.html#video3">Läs mer här ⯈</a></p>
+					</div>
+				</div>
+				<div class="promo skryt2 vc_col-sm-4" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/cisco.png);">
+					<div class="content">
+						<h3>Cisco</h3>
+						<p>Lär dig CISCO iOS och hur man konfigurerar nätverksutrustning. Fokus på <abbr title="Command Line Interface">CLI</abbr>  </p>
+						<p><a class="cta" href="videos.html#video5">Läs mer här ⯈</a></p>
+					</div>
+				</div>
+				<div class="promo skryt3 vc_col-sm-4" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/blandat.png);">
+					<div class="content">
+						<h3>Blandat</h3>
+						<p>Här tar vi upp allt övrigt som kan vara svårt att kategorisera som t.ex. binära talsystemet och säkerhet.</p>
+						<p><a class="cta" href="videos.html#video6">Läs mer här ⯈</a></p>
+					</div>
+				</div>
+				<div class="clearfix-pro"></div>
+			</div>
+
+
 		</div><!-- close .width-container-pro -->
 	</div><!-- #content-pro -->
 	
