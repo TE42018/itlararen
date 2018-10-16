@@ -1,3 +1,5 @@
+/* Article Bubble (custom element) */
+
 .anchor-bubble{
 	
 	display:flex;
@@ -19,6 +21,7 @@
 	background-color: #F7C0BD;
 	box-shadow: 0 0 10px #000;
 }
+/* end Article Bubble (custom element) */
 
 /* Video (custom element) */
 
@@ -43,3 +46,49 @@
 }
 
 /* end Video (custom element) */
+
+/* article link (custom element) */
+
+.article_link_container{
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.article_type_img{
+    position: absolute;
+    
+    left: 0;
+    top: -14px;
+}
+
+.article_img{ 
+   
+}
+
+.link_container{
+    width: 100%;
+    background-color: #F7C0BD;
+    border-radius: 4px;
+}
+
+.article_link{
+    position: relative;
+    color: black;
+    width: 100%;
+    margin-left: 3.5%;
+    font-size: 14px;
+}
+
+.article_difficulty{
+    position: absolute;
+    bottom: -8px;
+    right: -12px;
+}
+
+.article_difficulty_img{
+    
+}
+
+
+/* end article link (custom element) */
