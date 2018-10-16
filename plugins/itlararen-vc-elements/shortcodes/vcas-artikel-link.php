@@ -14,6 +14,7 @@ function vcas_component_artikel_link()
 					'class' => 'type',
 					'param_name' => 'link_type_image',
 					'value' => array(
+						__('välj kategori', "text-domain ") => '',
 						__('video', "text-domain ") => 'video',
 						__('pdf', "text-domain ") => 'pdf',
 						__('zip', "text-domain ") => 'zip',
@@ -37,6 +38,7 @@ function vcas_component_artikel_link()
 					'heading' => __( 'Field Label',  "my-text-domain" ),
 					'param_name' => 'difficulty',
 					'value' => array(
+					  __( 'välj svårighet',  "my-text-domain"  ) => '',
 					  __( 'Lätt',  "my-text-domain"  ) => 'enkel',
 					  __( 'Svår',  "my-text-domain"  ) => 'avancerad',
 					)
@@ -69,41 +71,44 @@ function vcas_artikel_link_function($atts, $content)
 		$image_type = $org['link_type_image'];
 		$difficulty = $org['difficulty'];
 		$html;
+		$title = $url['title'];
+
+		if($title == '')
+		{
+			$id = url_to_postid($url['url']);
+			$title = get_the_title($id);
+		}
+
 		ob_start();
 		?>
 		<div class="article_link_container">
-
-			<?php
-					$title = $url['title'];
-			?>
 			<a href="<?php echo $href ?>" class="article_link" rel="noopener noreferrer"><?php echo $title ?></a>
-
 
 		<div class="article_type_img">
 		<?php
 			if($image_type == 'kursplanering')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/look.png' class='article_img' alt='kursplanering'>");
+				echo("<img src='".plugin_dir_url( __FILE__ )."/img/look.png' class='article_img' alt='kursplanering'>");
 			}
 			else if ($image_type == 'video')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/play.png'class='article_img'  alt='video'>");
+				echo("<img src='".plugin_dir_url( __FILE__ )."/img/play.png' class='article_img'  alt='video'>");
 			}
 			else if ($image_type == 'pdf')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/pdf.png' class='article_img' alt='pdf'>");
+				echo("<img src='".plugin_dir_url( __FILE__ )."/img/pdf.png' class='article_img' alt='pdf'>");
 			}
 			else if ($image_type == 'zip')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/zip.png' class='article_img' alt='zip'> ");
+				echo("<img src='".plugin_dir_url( __FILE__ )."/img/zip.png' class='article_img' alt='zip'> ");
 			}
 			else if ($image_type == 'quiz')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/quiz2.png' class='article_img'  alt='quiz'>");
+				echo("<img src='".plugin_dir_url( __FILE__ )."/img/quiz2.png' class='article_img'  alt='quiz'>");
 			}
 			else if ($image_type == 'korsord')
 			{
-				echo("<img src='http://localhost:8080/wordpress/wp-content/uploads/2018/10/cross.png' class='article_img'  alt='korsord'>");
+				echo("<img src='".plugin_dir_url( __FILE__ )."/img/cross.png' class='article_img'  alt='korsord'>");
 			}
 			?>
 		</div>
@@ -112,11 +117,11 @@ function vcas_artikel_link_function($atts, $content)
 
 			if($difficulty == 'enkel')
 			{
-				echo('<img src="http://localhost:8080/wordpress/wp-content/uploads/2018/10/easy.png" class="article_difficulty_img" alt="Difficulty easy">');
+				echo('<img src="'.plugin_dir_url( __FILE__ ).'/img/easy.png" class="article_difficulty_img" alt="Difficulty easy">');
 			}
 			else if ($difficulty == 'avancerad')
 			{
-				echo('<img src="http://localhost:8080/wordpress/wp-content/uploads/2018/10/hard.png" class="article_difficulty_img" alt="Difficulty hard">');
+				echo('<img src="'.plugin_dir_url( __FILE__ ).'/img/hard.png" class="article_difficulty_img" alt="Difficulty hard">');
 			}
 		?>
 		</div>
@@ -129,8 +134,6 @@ return $html;
 
 }
 add_shortcode('vcas_artikel_link', 'vcas_artikel_link_function');
-
-add_action( 'wp_enqueue_scripts', 'vc_enqueue_style' );
 
 
 ?>
