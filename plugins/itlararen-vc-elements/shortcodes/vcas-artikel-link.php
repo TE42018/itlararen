@@ -68,7 +68,7 @@ function vcas_artikel_link_function($atts, $content)
 		$href = $url['url'];
 		$image_type = $org['link_type_image'];
 		$difficulty = $org['difficulty'];
-		$html .= "Max suger getdase";
+		$html;
 		ob_start();
 		?>
 		<div class="article_link_container">
