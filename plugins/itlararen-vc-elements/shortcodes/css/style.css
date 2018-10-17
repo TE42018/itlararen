@@ -71,13 +71,31 @@
     background-color: #F7C0BD;
     border-radius: 4px;
 }
+.article_link_container:hover .article_link { 
+    background-color: #99CC66; 
+    color: #FFF;
+}
+
+.article_link:hover .link_container{ 
+    background-color: #99CC66; 
+    color: #FFF;
+}
+
+
+.link_container:hover{ 
+    background-color: #99CC66; 
+    color: #FFF;
+}
+
 
 .article_link{
     position: relative;
     color: black;
     width: 100%;
-    margin-left: 3.5%;
+    margin-left: 38px;
     font-size: 14px;
+    margin-right: 5%;
+    font-weight: normal;
 }
 
 .article_difficulty{
