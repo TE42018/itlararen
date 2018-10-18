@@ -108,3 +108,23 @@
 
 
 /* end article link (custom element) */
+
+/* Quiz (custom element) */
+.quiz{
+    min-height: 320px;
+    margin:10px;
+    margin-bottom: 100px;
+}
+
+#error{
+    font-style: italic;
+    color: red;
+}
+
+#questions{
+    margin-top:-12px;
+}
+.dg-question-label {
+    font-weight: bold;
+}
+/* end Quiz (custom element) */

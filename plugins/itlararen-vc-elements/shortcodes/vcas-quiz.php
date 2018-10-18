@@ -94,7 +94,7 @@ function vcas_quiz_function($atts, $content)
             document.id('result').adopt(el);
 
             el = new Element('h4');
-            el.set('html', 'Score: ' + score.numCorrectAnswers + ' of ' + score.numQuestions);
+            el.set('html', 'Poäng: ' + score.numCorrectAnswers + ' av ' + score.numQuestions);
             document.id('result').adopt(el);
 
             if(score.incorrectAnswers.length > 0) {
@@ -140,11 +140,10 @@ function vcas_quiz_function($atts, $content)
         });
         quizMaker.start();
 
-        function print_this(facit)
-                {
+        function print_this(facit) {
                     HTMLtitle = '<h1>Quiz IPv4 Enkel</h1>\n';
                     HTMLdescrition = '<p>11 Frågor hämtade från dokumentet "Enkla IPv4-övningar".</p>\n';
-                    HTMLstring = '<!DOCTYPE HTML><html lang="sv"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>IT-läraren - Quiz</title><link rel="stylesheet" type="text/css" href="../css/print.css" /></head><body>';
+                    HTMLstring = '<!DOCTYPE HTML><html lang="sv"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>IT-läraren - Quiz</title><style>h1{text-align: center;}p{text-align: center;}div:nth-child(odd){background-color: #EEEEEE;}ul{list-style-type: circle;}div{padding: 10px;page-break-inside: avoid;}</style></head><body>';
                     HTMLstring+= HTMLtitle + HTMLdescrition;
 
                     var qNumbers = questions.length;
@@ -176,7 +175,9 @@ function vcas_quiz_function($atts, $content)
                         }
                         HTMLstring+='</div>\n';
                     }
+                    HTMLstring+='<script>function findQuestionImage(){let img = document.getElementsByTagName("img")[0];if(img != undefined){img.src = "<?php echo plugin_dir_url( __FILE__ )?>img/" + img.src.substring(img.src.lastIndexOf("/")+1);}}window.setInterval(findQuestionImage, 300);<\/script>';
                     HTMLstring+='<p>© IT-Läraren Skåne</p></body></html>';
+                
                     newwindow=window.open();
                     newdocument=newwindow.document;
                     newdocument.write(HTMLstring);
